@@ -4,6 +4,7 @@ import React from 'react'
 
 interface Meme {
   id: string;
+  name: string;
   url: string;
 }
 
@@ -17,49 +18,43 @@ const page = async () => {
   
   return (
     <>
-    <h1 className='text-center mt-5 font-serif '>MeMe-Generator-App</h1>
-    <div className="container mt-5 ">
-    <div className="flex flex-wrap justify-center gap-5">
-      {response.data.memes.map((item : Meme) => {
-        return <div>
-        <Image 
-      src={item.url} 
-      width={300} 
-      height={300} 
-      alt="meme" 
-    />
-    <Link
-      href={{
-        pathname: "creatememe",
-        query: {
-          url: item.url,
-          id: item.id
-        }
-      }} 
-      passHref
-    >
-      <br />
-      <button 
-      style={{
-        padding: '12px 24px',
-        fontSize: '16px',
-        fontWeight: 'bold',
-        color: 'white',
-        background: 'linear-gradient(135deg, #ff6b6b, #d90429)',
-        border: 'none',
-        borderRadius: '8px',
-        cursor: 'pointer',
-        transition: 'all 0.3s ease',
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-      }}
-    >Generate Meme</button>
-  </Link>
-   </div>
-    })}
-    </div>
-    </div>
+      <h1 className="text-center mt-5 font-serif text-3xl">MeMe-Generator-App</h1>
+      <div className="container mx-auto mt-10">
+        <div className="flex flex-wrap justify-center gap-6">
+          {response.data.memes.map((item : Meme) => (
+            <div 
+              key={item.id} 
+              className="flex flex-col justify-between max-w-sm bg-white rounded-lg shadow-lg overflow-hidden"
+            >
+              <div className="relative">
+                <Image 
+                  src={item.url} 
+                  width={200} 
+                  height={200} 
+                  alt="meme" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex-grow"></div> 
+              <div className="p-4">
+                <button className="w-full text-white font-bold py-2 px-4 rounded-md transition-all duration-300 ease-in-out bg-gradient-to-r from-red-400 to-red-700 hover:from-red-500 hover:to-red-600 shadow-md">
+                  <Link href={{
+                    pathname: "Meme",
+                    query: {
+                      url: item.url,
+                      id: item.id,
+                    },
+                  }}>
+                    Generate Meme
+                  </Link>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </>
   )
 }
 
-export default page
+export default page;
