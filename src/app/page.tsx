@@ -39,7 +39,7 @@ const page = async () => {
               <div className="p-4">
                 <button className="w-full text-white font-bold py-2 px-4 rounded-md transition-all duration-300 ease-in-out bg-gradient-to-r from-red-400 to-red-700 hover:from-red-500 hover:to-red-600 shadow-md">
                   <Link href={{
-                    pathname: "Meme",
+                    pathname: "generatememe",
                     query: {
                       url: item.url,
                       id: item.id,
